@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/tiagorc-cabral/Documentos/NativeReact/udemy_new/rn-course/android/app/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/home/tiagorc-cabral/Documentos/NativeReact/udemy_new/rn-course/android/app/src/debug/jniLibs"/></dataSet></merger>
