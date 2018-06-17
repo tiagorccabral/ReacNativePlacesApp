@@ -2,11 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import PlaceInputComponent from './src/components/PlaceInputComponent/PlaceInputComponent'
 import ListComponent from './src/components/ListComponent/ListComponent';
+import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
 import imagemNuvem from './src/assets/imagem-nuvem.jpg';
 
 export default class App extends React.Component {
   state = {
-    places: []
+    places: [],
+    selectedPlace: null
   };
 
   placeSubmitHandler = placeName => {
@@ -21,23 +23,45 @@ export default class App extends React.Component {
     });
   }
 
-  placeDeletedHandler = (key) => {
+  placeSelectedHandler = (key) => {
+    this.setState(prevState => {
+      return {
+        selectedPlace: prevState.places.find(place => {
+          return place.key === key;
+        })
+      };
+    })
+  }
+
+  placeDeletedHandler = () => {
     this.setState(prevState => {
       return {
         places: prevState.places.filter(place => {
-          return place.key !== key;
-        })
+          return place.key !== prevState.selectedPlace.key;
+        }),
+        selectedPlace: null
       };
     });
+  }
+
+  modalClosedHandler = () => {
+    this.setState({
+      selectedPlace: null
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <PlaceDetail 
+          selectedPlace={this.state.selectedPlace}
+          onItemDeleted={this.placeDeletedHandler}
+          onModalClosed={this.modalClosedHandler}
+        />
         <PlaceInputComponent onPlaceAdded={this.placeSubmitHandler} />
         <ListComponent
           placesName={this.state.places}
-          onItemDeleted={this.placeDeletedHandler}
+          onItemSelected={this.placeSelectedHandler}
         />
       </View>
     );

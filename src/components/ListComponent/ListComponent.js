@@ -13,7 +13,7 @@ class ListComponent extends Component {
           <ListItem
             placeName={info.item.name}
             placeImage={info.item.image}
-            onItemPressed={() => this.props.onItemDeleted(info.item.key)}
+            onItemPressed={() => this.props.onItemSelected(info.item.key)}
           />
         )}
       />
