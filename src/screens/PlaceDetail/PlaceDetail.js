@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-  View, Image, Text, Button, StyleSheet, TouchableOpacity
+  View, Image, Text, StyleSheet, TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
 
